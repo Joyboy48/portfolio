@@ -1,3 +1,4 @@
+"use client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -10,21 +11,30 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-import { SendEmail } from "./SendEmail";
+
+import { useRef } from "react";
 
 const ContactForm = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = formRef.current;
+    if (!form) return;
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value;
+    const email = (form.elements.namedItem("SenderEmail") as HTMLInputElement)?.value;
+    const message = (form.elements.namedItem("message") as HTMLInputElement)?.value;
+    const mailto = `mailto:astitvaarya9589@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')')}`;
+    window.location.href = mailto;
+  };
+
   return (
     <Card>
-      <form
-        action={async (FormData) => {
-          "use server";
-          await SendEmail(FormData);
-        }}
-      >
+      <form ref={formRef} onSubmit={handleSubmit}>
         <CardHeader>
           <CardTitle className="icon_underline">Send me a mail.</CardTitle>
           <CardDescription>
-            Once form is submit you will be redirect to home page.
+            When you submit, your email client will open with your message pre-filled.
           </CardDescription>
         </CardHeader>
         <CardContent>

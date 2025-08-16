@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { portfolioConfig } from "@/config/portfolio.config";
-
+import Particles from "@/components/animations/Particles";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
@@ -17,38 +17,16 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(portfolioConfig.seo.url),
   title: {
     default: portfolioConfig.name,
     template: `%s - ${portfolioConfig.title}`,
   },
   description: portfolioConfig.description,
-
-  // added new keywords for seo
-  keywords: portfolioConfig.seo.keywords,
-  authors: portfolioConfig.seo.authors,
-  creator: portfolioConfig.name,
-
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: portfolioConfig.seo.url,
-    title: portfolioConfig.name,
-    description: portfolioConfig.description,
-    images: [`${portfolioConfig.seo.url}/og-image.png`],
-    siteName: portfolioConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: portfolioConfig.name,
-    description: portfolioConfig.description,
-    images: [`${portfolioConfig.seo.url}/og-image.png`],
-    creator: portfolioConfig.seo.twitterHandle,
-  },
   icons: {
-    icon: "/favicon.ico",
+
   },
 };
+
 
 export default function RootLayout({
   children,
@@ -56,19 +34,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={`${poppins.variable} ${rubik.variable}`}>
+        
+        {/* PARTICLES IN BACKGROUND */}
+        <div className="fixed inset-0 -z-10">
+          <Particles />
+        </div>
+
+        {/* NAVBAR */}
+        <Navbar />
+
+        {/* MAIN CONTENT */}
         <main
           className={cn(
-            "flex  relative  break-words h-dvh min-h-screen items-center justify-between pt-14 pb-4 px-40 max-md:p-4 bg-transparent max-sm:pt-20 bg-[radial-gradient(#2f7df4_1px,transparent_1px)] [background-size:16px_16px]",
-            { "bg-white": "#E6E7EB" }
+            "flex relative break-words h-dvh min-h-screen items-center justify-between pt-14 pb-4 px-40 max-md:p-4 max-sm:pt-20 bg-background/50" // <-- transparent background
           )}
         >
-          {/* NAVBAR ->  */}
-          <Navbar />
           {children}
         </main>
       </body>
     </html>
   );
 }
+
+
