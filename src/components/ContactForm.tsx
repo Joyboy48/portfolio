@@ -30,7 +30,7 @@ const ContactForm = () => {
         "service_60hrasr", // your service ID
         "template_9semgj9", // your template ID
         form.current!,
-        "process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY" // your public key
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY 
       );
 
       if (result.text === "OK") {
