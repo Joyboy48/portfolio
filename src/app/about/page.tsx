@@ -15,7 +15,7 @@ const page = () => {
         <User2 className="h-4 w-4" /> About Me
       </Badge>
       <Heading>
-        {portfolioConfig.title} & Web Developer, {portfolioConfig.about.personalInfo.nationality}
+        {portfolioConfig.title} & Backend Developer, {portfolioConfig.about.personalInfo.nationality}
       </Heading>
       <FramerWrapper y={0} x={100}>
         <p className="font-poppins text-lg w-full text-primary text-balance">

@@ -13,27 +13,30 @@ export const portfolioConfig = {
     twitter: "https://x.com/astitva_arya",
     linkedin: "https://www.linkedin.com/in/astitva-arya/",
     github: "https://github.com/Joyboy48", // Assuming this is the GitHub link
-    instagram: "https://www.instagram.com/astitva__arya/", // Replace with your actual Instagram username
+    instagram: "https://www.instagram.com/astitva__arya/",
+    leetcode: "https://leetcode.com/u/joyboy048/" // Replace with your actual Instagram username
   },
 
   
   // About Information
-  about: {
-    bio: "Backend Developer skilled in MongoDB, Express.js, Node.js, SQL (MySQL, PostgreSQL), and Prisma. Experienced in building and deploying scalable apps, from Flutter mobile projects to Dockerized backend services. Passionate about learning DevOps, cloud technologies, and delivering high-performance, reliable solutions.",
-    hobbies: [
-      "Coding",
-      "Playing Games",
-      "Watching Anime",
-      "Playing Guitar",
-      "Creating Cool Projects",
-      "Gym"
-    ],
-    personalInfo: {
+// About Information
+about: {
+  bio: "Hi, I’m Astitva Arya, a B.Tech undergraduate from Vidisha, MP, and a dedicated Computer Science student at IIIT Nagpur with a strong passion for software development. I am proficient in multiple programming languages and enjoy tackling coding challenges to sharpen my problem-solving skills. As a Backend Developer, I am skilled in MongoDB, Express.js, Node.js, SQL (MySQL, PostgreSQL), and Prisma. I have experience in building and deploying scalable applications, ranging from Flutter mobile backends to Dockerized server services. I am passionate about exploring DevOps and cloud technologies and delivering high-performance, reliable solutions.",
+  hobbies: [
+    "Coding",
+    "Playing Games",
+    "Watching Anime",
+    "Playing Guitar",
+    "Creating Cool Projects",
+    "Gym"
+  ],
+  personalInfo: {
       language: "English UK",
       nationality: "India",
       gender: "Male",
     },
-  },
+}
+,
 
   // Skills and Roles
   skills: {
@@ -41,9 +44,9 @@ export const portfolioConfig = {
       "Freelancer",
       "Musician",
       "Gamer",
-      "Creator",
       "Student",
       "Contributer",
+      "Dreamer"
     ],
     // Technical Skills
     programmingLanguages: [
@@ -66,7 +69,12 @@ export const portfolioConfig = {
   {
     name: "Dart",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-  }
+  },
+{
+  name: "C++",
+  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+},
+
 ],
 frameworks: [
   {
@@ -97,8 +105,8 @@ tools: [
   },
   {
     name: "PostgreSQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-  },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    },
   {
     name: "MySQL",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
@@ -228,8 +236,5 @@ dataScience: [
     },
   ],
 
-  // API Keys (should be in .env but referenced here)
-  apiKeys: {
-    resendApiKey: "YOUR_RESEND_API_KEY", // This should be loaded from environment variables in a real app
-  },
+ 
 };

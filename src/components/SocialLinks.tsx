@@ -32,6 +32,17 @@ const SocialLinks = () => {
       link: portfolioConfig.socialLinks.github,
       icon: <Github />,
     },
+    {
+    name: "LeetCode",
+      link: portfolioConfig.socialLinks.leetcode, // make sure to add this in portfolioConfig
+      icon: (
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg"
+          alt="LeetCode"
+          className="w-5 h-5"
+        />
+      ),
+    },
   ];
   return (
     <>
