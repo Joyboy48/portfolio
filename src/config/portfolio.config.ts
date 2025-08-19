@@ -6,7 +6,8 @@ export const portfolioConfig = {
   location: "Vidisha, Madhya Pradesh, India",
 
   // Contact Information
-  email: "astitvaarya9589@gmail.com", // Replace with actual email if available
+  email: "astitvaarya9589@gmail.com",
+  phone: "+91-9589134495", // Replace with actual email if available
 
   // Social Media Links
   socialLinks: {
@@ -35,8 +36,8 @@ about: {
       nationality: "India",
       gender: "Male",
     },
-}
-,
+},
+
 
   // Skills and Roles
   skills: {
@@ -235,6 +236,8 @@ dataScience: [
       link: "https://www.buymeacoffee.com/astitvaarya",
     },
   ],
+
+  
 
  
 };
