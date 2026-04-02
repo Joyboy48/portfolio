@@ -1,60 +1,100 @@
-import Heading from "@/components/Heading";
-import SkillsFooter from "@/components/SkillsFotter";
-import { Badge } from "@/components/ui/badge";
-import { LightbulbIcon } from "lucide-react";
 import FramerWrapper from "@/components/animation/FramerWrapper";
+import Heading from "@/components/Heading";
+import { Badge } from "@/components/ui/badge";
+import { Briefcase } from "lucide-react";
 import { portfolioConfig } from "@/config/portfolio.config";
 
-const skillPage = () => {
+const educationPage = () => {
   return (
-    // SKILLS PAGE
+    // ABOUT PAGE
     <div className="h-full w-full relative flex flex-col items-start gap-5 overflow-hidden">
       <Badge variant="secondary" className="gap-1.5 py-1 ">
-        <LightbulbIcon className="w-4 h-4" />
-        My Skills
+        <Briefcase className="h-4 w-4" />
+        Education & Experience
       </Badge>
       <div className="flex flex-col gap-3">
-        <Heading>My Technical Experience/Skills.</Heading>
-        <FramerWrapper y={0} x={200}>
-          <p className="font-poppins text-xl w-full text-primary max-sm:text-lg">
-            Currently, I am a fresher with a solid understanding of JavaScript and TypeScript. I specialize in building scalable applications using Node.js, Express.js, SQL (MySQL/PostgreSQL), MongoDB, and Prisma, with additional experience in Flutter, Docker, and cloud technologies.
-          </p>
-        </FramerWrapper>
-        <FramerWrapper y={100} delay={0.3} className="block w-full">
-          <h1 className="gap-2 text-2xl font-poppins text-primary font-semibold flex text_underline relative max-sm:text-xl mb-4">
-            Programming Languages
-          </h1>
-          <div className="w-full grid grid-cols-7 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-4">
-            <SkillsFooter items={portfolioConfig.skills.programmingLanguages} />
+        <Heading>My Education & Experience</Heading>
+      </div>
+      
+      {/* Education Section */}
+      <div className="w-full h-fit flex flex-col mb-8">
+        <h2 className="text-xl font-poppins text-primary font-semibold mb-4">Education</h2>
+        {portfolioConfig.education.map((edu, index) => (
+          <div className="w-full h-fit flex" key={`edu-${index}`}>
+            <FramerWrapper
+              y={0}
+              x={-100}
+              delay={0.35 + index * 0.1}
+              className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base"
+            >
+              {edu.period}
+            </FramerWrapper>
+            <FramerWrapper
+              y={0}
+              x={100}
+              delay={0.35 + index * 0.1}
+              className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point"
+            >
+              <div className="text-2xl font-rubik max-sm:text-xl">
+                {edu.degree}, <br /> {edu.institution}
+              </div>
+              <p className="font-poppins text-base w-full text-primary max-sm:text-xs">
+                {edu.description}
+              </p>
+              {edu.cgpa && (
+                <p className="font-poppins text-sm text-accent mt-2">
+                  CGPA: {edu.cgpa}
+                </p>
+              )}
+            </FramerWrapper>
           </div>
-        </FramerWrapper>
-        <FramerWrapper className="block w-full" y={100} delay={0.32}>
-          <h1 className="gap-2 text-2xl font-poppins text-primary font-semibold flex text_underline relative max-sm:text-xl mb-4">
-            Framework/Libraries
-          </h1>
-          <div className="w-full grid grid-cols-7 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-4">
-            <SkillsFooter items={portfolioConfig.skills.frameworks} />
+        ))}
+      </div>
+
+      {/* Experience Section */}
+      <div className="w-full h-fit flex flex-col">
+        <h2 className="text-xl font-poppins text-primary font-semibold mb-4">Experience</h2>
+        {portfolioConfig.experience.map((exp, index) => (
+          <div className="w-full h-fit flex" key={`exp-${index}`}>
+            <FramerWrapper
+              y={0}
+              x={-100}
+              delay={0.35 + index * 0.1}
+              className="w-1/4 font-rubik flex items-center justify-evenly text-lg max-sm:text-base"
+            >
+              {exp.period}
+            </FramerWrapper>
+            <FramerWrapper
+              y={0}
+              x={100}
+              delay={0.35 + index * 0.1}
+              className="relative w-3/4 border-l-4 border-l-[#3c3c3c] p-4 gap-3 education_point"
+            >
+              <div className="text-2xl font-rubik max-sm:text-xl">
+                {exp.title} <br />
+                <span className="text-lg text-accent">{exp.company}</span>
+                <br />
+                <span className="text-sm text-primary">{exp.location}</span>
+              </div>
+              <p className="font-poppins text-base w-full text-primary max-sm:text-xs mb-3">
+                {exp.description}
+              </p>
+              {exp.achievements && (
+                <div className="mt-3">
+                  <h4 className="font-poppins text-sm font-semibold text-accent mb-2">Key Achievements:</h4>
+                  <ul className="list-disc list-inside font-poppins text-sm text-primary space-y-1">
+                    {exp.achievements.map((achievement, achIndex) => (
+                      <li key={achIndex}>{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </FramerWrapper>
           </div>
-        </FramerWrapper>
-        <FramerWrapper className="block w-full" y={100} delay={0.34}>
-          <h1 className="gap-2 text-2xl font-poppins text-primary font-semibold flex text_underline relative max-sm:text-xl mb-4">
-            Tools & Technologies
-          </h1>
-          <div className="w-full grid grid-cols-7 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-4">
-            <SkillsFooter items={portfolioConfig.skills.tools} />
-          </div>
-        </FramerWrapper>
-        <FramerWrapper className="block w-full" y={100} delay={0.36}>
-          <h1 className="gap-2 text-2xl font-poppins text-primary font-semibold flex text_underline relative max-sm:text-xl mb-4">
-            Data Science
-          </h1>
-          <div className="w-full grid grid-cols-7 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2 gap-4">
-            <SkillsFooter items={portfolioConfig.skills.dataScience} />
-          </div>
-        </FramerWrapper>
+        ))}
       </div>
     </div>
   );
 };
 
-export default skillPage;
+export default educationPage;
