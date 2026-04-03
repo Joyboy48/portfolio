@@ -236,6 +236,7 @@ const Particles: React.FC<ParticlesProps> = ({
     sizeRandomness,
     cameraDistance,
     disableRotation,
+    defaultColors,
   ]);
 
   return (

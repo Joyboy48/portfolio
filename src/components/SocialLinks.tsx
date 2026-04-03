@@ -9,6 +9,7 @@
   import Link from "next/link";
   import FramerWrapper from "./animation/FramerWrapper";
   import { portfolioConfig } from "@/config/portfolio.config";
+  import Image from "next/image";
 
   const SocialLinks = () => {
     const links = [
@@ -36,9 +37,11 @@
       name: "LeetCode",
         link: portfolioConfig.socialLinks.leetcode, // make sure to add this in portfolioConfig
         icon: (
-          <img
+          <Image
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leetcode/leetcode-original.svg"
             alt="LeetCode"
+            width={20}
+            height={20}
             className="w-5 h-5"
           />
         ),
