@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 import "./Particles.css";
 
@@ -8,14 +8,10 @@ const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
 
 const hexToRgb = (hex: string): [number, number, number] => {
   hex = hex.replace(/^#/, "");
-  if (hex.length === 3) {
-    hex = hex.split("").map((c) => c + c).join("");
-  }
-  const int = parseInt(hex, 16);
-  const r = ((int >> 16) & 255) / 255;
-  const g = ((int >> 8) & 255) / 255;
-  const b = (int & 255) / 255;
-  return [r, g, b];
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return [r / 255, g / 255, b / 255];
 };
 
 const vertex = /* glsl */ `
@@ -108,6 +104,19 @@ const Particles: React.FC<ParticlesProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Keyboard shortcut to toggle particles
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'p' || e.key === 'P') {
+        setIsVisible(prev => !prev);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -240,7 +249,7 @@ const Particles: React.FC<ParticlesProps> = ({
   ]);
 
   return (
-    <div ref={containerRef} className={`particles-container ${className}`} />
+    <div ref={containerRef} className={`particles-container ${className}`} style={{ display: isVisible ? 'block' : 'none' }} />
   );
 };
 
