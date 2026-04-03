@@ -6,6 +6,7 @@ const nextConfig = {
     serverExternalPackages: [
         '@react-email/render',
     ],
+    outputFileTracingRoot: './.next',
 }
 
 module.exports = nextConfig
