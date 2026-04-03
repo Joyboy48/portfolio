@@ -48,7 +48,7 @@ export default function RootLayout({
         {/* MAIN CONTENT */}
         <main
           className={cn(
-            "flex relative break-words h-dvh min-h-screen items-center justify-between pt-14 pb-4 px-40 max-md:p-4 max-sm:pt-20 bg-background/50" // <-- transparent background
+            "flex relative break-words h-dvh min-h-screen items-center justify-between pt-14 pb-4 px-4 sm:px-6 md:px-10 max-sm:pt-20 bg-background/50" // <-- transparent background
           )}
         >
           {children}

@@ -115,7 +115,18 @@ const Particles: React.FC<ParticlesProps> = ({
     };
     
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    
+    // Custom event listener for navbar toggle
+    const handleToggleParticles = () => {
+      setIsVisible(prev => !prev);
+    };
+    
+    window.addEventListener('toggleParticles', handleToggleParticles);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('toggleParticles', handleToggleParticles);
+    };
   }, []);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import {
   LightbulbIcon,
   Mail,
   MoreHorizontal,
- 
+  Sparkles,
   User,
 } from 'lucide-react';
 
@@ -74,6 +74,17 @@ const Navbar = () => {
       ),
       href: '/more',
     },
+    {
+      title: 'Particles',
+      icon: (
+        <Sparkles className='h-full w-full ' />
+      ),
+      href: '#',
+      onClick: () => {
+        const event = new CustomEvent('toggleParticles');
+        window.dispatchEvent(event);
+      }
+    },
   ];
   const [scrolling, setScrolling] = useState(false);
   const pathname = usePathname()
@@ -99,17 +110,25 @@ const Navbar = () => {
 
     <div className={`fixed top-5 right-0 left-0 px-0 sm:px-5 m-auto w-full sm:w-fit bg-transparent z-[+9999999] ${scrolling ? "hidden":"block"}`}>
     <Dock className='items-end pb-3 rounded-full'>
-      {data.map((item, idx) => (
-        <Link href={item.href} key={idx}>
-
-        <DockItem
-          className={cn("aspect-square rounded-full bg-gray-200 dark:bg-neutral-800",pathname === item.href && " bg-gray-100 !border !border-primary-sky")}
-          >
-          <DockLabel >{item.title}</DockLabel>
-          <DockIcon className={cn(pathname === item.href && "text-[#2f7df4]")}>{item.icon}</DockIcon>
-        </DockItem>
+      {data.map((item, idx) =>
+        item.onClick ? (
+          <div key={idx} onClick={item.onClick} style={{ cursor: 'pointer' }}>
+            <DockItem className={cn("aspect-square rounded-full bg-gray-200 dark:bg-neutral-800")}>
+              <DockLabel>{item.title}</DockLabel>
+              <DockIcon>{item.icon}</DockIcon>
+            </DockItem>
+          </div>
+        ) : (
+          <Link href={item.href} key={idx}>
+            <DockItem
+              className={cn("aspect-square rounded-full bg-gray-200 dark:bg-neutral-800", pathname === item.href && " bg-gray-100 !border !border-primary-sky")}
+            >
+              <DockLabel>{item.title}</DockLabel>
+              <DockIcon className={cn(pathname === item.href && "text-[#2f7df4]")}>{item.icon}</DockIcon>
+            </DockItem>
           </Link>
-      ))}
+        )
+      )}
     </Dock>
     </div>
   );
