@@ -15,7 +15,8 @@ export const portfolioConfig = {
     linkedin: "https://www.linkedin.com/in/astitva-arya/",
     github: "https://github.com/Joyboy48", // Assuming this is the GitHub link
     instagram: "https://www.instagram.com/astitva__arya/",
-    leetcode: "https://leetcode.com/u/joyboy048/" // Replace with your actual Instagram username
+    leetcode: "https://leetcode.com/u/joyboy048/", // Replace with your actual Instagram username
+    medium: "https://medium.com/@astitvaarya9589",
   },
 
   // About Information
