@@ -12,6 +12,7 @@ import {
   Mail,
   MoreHorizontal,
   Sparkles,
+  Terminal,
   User,
 } from 'lucide-react';
 
@@ -66,6 +67,13 @@ const Navbar = () => {
         <GitFork className='h-full w-full ' />
       ),
       href: '/contributions',
+    },
+    {
+      title: 'Terminal',
+      icon: (
+        <Terminal className='h-full w-full ' />
+      ),
+      href: '/terminal',
     },
    
     {
