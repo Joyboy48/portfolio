@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { portfolioConfig } from "@/config/portfolio.config";
 import Particles from "@/components/animations/Particles";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { KonamiProvider } from "@/components/KonamiProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -58,6 +59,9 @@ export default function RootLayout({
 
         {/* THEME ACCENT SWITCHER */}
         <ThemeSwitcher />
+
+        {/* KONAMI CODE EASTER EGG — global listener */}
+        <KonamiProvider />
       </body>
     </html>
   );
