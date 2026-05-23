@@ -7,6 +7,7 @@ import { portfolioConfig } from "@/config/portfolio.config";
 import Particles from "@/components/animations/Particles";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { KonamiProvider } from "@/components/KonamiProvider";
+import SpotifyWidget from "@/components/SpotifyWidget";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,6 +63,9 @@ export default function RootLayout({
 
         {/* KONAMI CODE EASTER EGG — global listener */}
         <KonamiProvider />
+
+        {/* GLOBAL SPOTIFY & LOFI MUSIC WIDGET */}
+        <SpotifyWidget />
       </body>
     </html>
   );
