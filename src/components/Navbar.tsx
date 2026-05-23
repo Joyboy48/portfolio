@@ -12,6 +12,7 @@ import {
   LightbulbIcon,
   Mail,
   MoreHorizontal,
+  Newspaper,
   Sparkles,
   Terminal,
   User,
@@ -82,6 +83,13 @@ const Navbar = () => {
         <Github className='h-full w-full ' />
       ),
       href: '/github',
+    },
+    {
+      title: 'Blogs',
+      icon: (
+        <Newspaper className='h-full w-full ' />
+      ),
+      href: '/blogs',
     },
    
     {
