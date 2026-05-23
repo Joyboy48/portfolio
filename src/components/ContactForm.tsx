@@ -29,11 +29,14 @@ const ContactForm = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
+      // EmailJS v4: pass public key as 4th arg in options object
       const result = await emailjs.sendForm(
         "service_60hrasr",
         "template_9semgj9",
         form.current!,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        }
       );
 
       if (result.text === "OK") {
@@ -42,8 +45,9 @@ const ContactForm = () => {
       } else {
         throw new Error("Failed to send message");
       }
-    } catch (error) {
-      console.error("Error sending email:", error);
+    } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : String(error);
+      console.error("EmailJS error:", errMsg);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
