@@ -69,6 +69,7 @@ const Navbar = () => {
       ),
       href: '/contributions',
     },
+    {
       title: 'Terminal',
       icon: (
         <Terminal className='h-full w-full ' />
