@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   Briefcase,
   FolderGit2,
+  GitFork,
   GraduationCap,
   HomeIcon,
   LightbulbIcon,
@@ -58,6 +59,13 @@ const Navbar = () => {
         <FolderGit2 className='h-full w-full ' />
       ),
       href: '/projects',
+    },
+    {
+      title: 'Contributions',
+      icon: (
+        <GitFork className='h-full w-full ' />
+      ),
+      href: '/contributions',
     },
    
     {

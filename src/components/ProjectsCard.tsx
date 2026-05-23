@@ -17,6 +17,7 @@ interface ProjectCardProps {
     description: string;
     tags: string[];
     link: string;
+    demoLink?: string;
   };
   num: number;
 }
@@ -66,22 +67,38 @@ const ProjectCards: React.FC<ProjectCardProps> = ({ value, num }) => {
           </div>
         </CardContent>
 
-        <CardFooter className="pt-2 ">
+        <CardFooter className="pt-2 flex gap-2 flex-wrap">
           <Link
             href={value.link}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ 
-                variant: "default", 
+                variant: "outline", 
                 size: "sm" 
               }),
-              "w-fit transition-all hover:translate-y-[-2px] hover:shadow-md group"
+              "transition-all hover:translate-y-[-2px] hover:shadow-md"
             )}
           >
-            Visit Project 
-            <ArrowUpRight className="h-4 w-4 ml-1 hidden group-hover:block -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+            Source Code
           </Link>
+          {value.demoLink && (
+            <Link
+              href={value.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({ 
+                  variant: "default", 
+                  size: "sm" 
+                }),
+                "transition-all hover:translate-y-[-2px] hover:shadow-md flex items-center gap-1 group"
+              )}
+            >
+              {value.demoLink.includes("youtube.com") || value.demoLink.includes("youtu.be") ? "Watch Demo" : "Live Demo"}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          )}
         </CardFooter>
       </Card>
     </FramerWrapper>

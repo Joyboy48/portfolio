@@ -236,7 +236,7 @@ export const portfolioConfig = {
       cgpa: "7.49/10",
       description: "Pursing B.Tech in Computer Science and Engineering with specialization in Data Science & Analytics"
     },
-    
+
   ],
 
   // Experience Information
@@ -255,7 +255,6 @@ export const portfolioConfig = {
       ]
     }
   ],
-
   // Projects Information
   projects: [
     {
@@ -279,7 +278,7 @@ export const portfolioConfig = {
       title: "Distributed Linux Fleet Management System",
       description: "Engineered a fleet monitoring and orchestration system using Prometheus, Grafana, and a custom multi-threaded C++ controller with REST APIs for node registration, health checks, and status management across 10+ nodes",
       tags: ["C++", "Linux", "Docker", "Prometheus", "Grafana", "libssh", "REST APIs"],
-      link: "https://github.com/Joyboy48",
+      link: "https://github.com/Joyboy48/fleet-management-system",
       achievements: [
         "Configured Prometheus with file-based service discovery for automatic metric scraping, eliminating 100% of manual target configuration updates",
         "Developed SSH-based remote command execution via libssh; provisioned Grafana dashboards tracking CPU, memory, disk, and network with under 5s refresh latency",
@@ -290,8 +289,8 @@ export const portfolioConfig = {
       title: "NetGenX – AI-Powered Cyber Incident Platform",
       description: "Developed ML threat detection system using TensorFlow achieving 95% accuracy on 50,000+ incident samples, reducing analyst triage time from 24 hours to 2 minutes (97% reduction)",
       tags: ["Python", "TensorFlow", "MERN", "Docker", "Machine Learning", "Flask", "Node.js"],
-      link: "https://github.com/Joyboy48",
-      demoLink: "https://demo.example.com",
+      link: "https://github.com/adi2687/sih",
+      demoLink: "https://www.youtube.com/watch?v=Q9UzPYigs1U",
       achievements: [
         "Architected scalable microservices backend with Node.js and Flask REST APIs, JWT auth, Redis caching, and Docker containerization on Linux for horizontal scaling",
         "Integrated Ethereum blockchain audit logging with Solidity smart contracts and IPFS decentralized storage, securing 100% of audit trail data against tampering"
@@ -301,8 +300,8 @@ export const portfolioConfig = {
       title: "EliteCart – Full-Stack E-commerce Platform",
       description: "Engineered a full-stack e-commerce platform with a Flutter (GetX) mobile frontend and a scalable Node.js/Express/TypeScript backend; architected 50+ RESTful endpoints with JWT + Google OAuth 2.0 and RBAC securing 35+ admin routes",
       tags: ["Node.js", "TypeScript", "Flutter", "MongoDB", "Redis", "Razorpay", "REST APIs"],
-      link: "https://github.com/Joyboy48",
-      demoLink: "https://demo.example.com",
+      link: "https://github.com/Joyboy48/EliteCart",
+      demoLink: "https://www.youtube.com/watch?v=M9UrKThFey8&t=4s",
       achievements: [
         "Integrated end-to-end Razorpay payments with HMAC-SHA256 signature validation and Nodemailer for automated order confirmation emails",
         "Deployed a Redis cache-aside strategy across 9 indexed Mongoose models reducing read latency by 40%; integrated Firebase Analytics monitoring 1,000+ active user sessions"
@@ -310,11 +309,12 @@ export const portfolioConfig = {
     },
    
     {
-      title: "Streamzy - Social Video Sharing Platform",
+      title: "ZooTube - Social Video Sharing Platform",
       description:
-        "Streamzy is a full-stack social video-sharing platform with features like user authentication, video uploads, playlists, likes, and subscriptions. Built using Node.js, Express.js, MongoDB, Cloudinary, and JWT for secure and scalable media sharing.",
+        "ZooTube is a full-stack real-time video streaming platform featuring user authentication, video uploads, playlists, likes, and subscriptions. Built using Node.js, Express.js, MongoDB, Cloudinary, and JWT for secure and scalable media sharing.",
       tags: ["Node.js", "Express.js", "MongoDB", "Cloudinary", "JWT"],
-      link: "https://github.com/Joyboy48/js-backend",
+      link: "https://github.com/Joyboy48/zooTube",
+      demoLink: "https://zootube.vercel.app/login"
     },
     {
       title: "Firebase Chat App",
@@ -348,7 +348,7 @@ export const portfolioConfig = {
       description:
         "Enterprise-grade Kafka pipeline with Avro schema validation using Confluent Schema Registry. Implements FastAPI producer service, Python consumer, and enforces data contracts through centralized schema management for guaranteed producer-consumer compatibility.",
       tags: ["Apache Kafka", "Avro", "Schema Registry", "FastAPI", "Python", "Docker", "Confluent", "Data Streaming"],
-      link: "https://github.com/Joyboy48",
+      link: "https://github.com/Joyboy48/schema-controlled-kafka-pipeline",
       achievements: [
         "Implemented schema-controlled data streaming using Apache Kafka with Schema Registry and Avro serialization",
         "Built FastAPI HTTP-to-Kafka bridge service with automatic schema registration and validation",
@@ -368,7 +368,65 @@ export const portfolioConfig = {
     },
   ],
 
-  
-
- 
+  // Open Source Contributions
+  contributions: {
+    summary: "Active contributor to the Cloud Native Computing Foundation (CNCF), focusing on CLI development (Go/Cobra), Kubernetes context timeout management, unit testing isolation, and developer experience (UX) scaffolding.",
+    gssoc: {
+      title: "GirlScript Summer of Code (GSSoC)",
+      role: "Contributor",
+      description: "Selected as a contributor for GirlScript Summer of Code, collaborating with maintainers to contribute to open-source codebases, solve real-world issues, and engage with the global developer community.",
+    },
+    merged: [
+      {
+        title: "CLI Misleading Logs Fix (PR #19066)",
+        description: "Corrected deceptive console warnings and success outputs inside the mesheryctl model init pipeline during connections and credentials schema scaffolding generation.",
+        link: "https://github.com/meshery/meshery/pull/19066",
+        tags: ["Go/Cobra CLI", "Docker"]
+      },
+      {
+        title: "Test Suite Flag State Isolation (PR #19064)",
+        description: "Designed and integrated a recursive flag-reset handler in Cobra CLI unit tests to eliminate persistent flag state leakage, achieving complete test suite isolation.",
+        link: "https://github.com/meshery/meshery/pull/19064",
+        tags: ["Go/Cobra CLI"]
+      },
+      {
+        title: "Docs Reference Clean Up (PR #18964)",
+        description: "Identified and removed redundant OpenAPI specification REST reference sections to streamline documentation site builds.",
+        link: "https://github.com/meshery/meshery/pull/18964",
+        tags: ["OpenAPI", "Documentation"]
+      },
+      {
+        title: "Java Metrics Exporter Docs Fix (PR #9749)",
+        description: "Added 'console' to the list of known values for the Java metrics exporter (otel.metrics.exporter) configuration reference in the official OpenTelemetry documentation site.",
+        link: "https://github.com/open-telemetry/opentelemetry.io/pull/9749",
+        tags: ["OpenTelemetry", "Java", "Documentation"]
+      }
+    ],
+    active: [
+      {
+        title: "CLI HTTP Client Fail-Fast Timeout (PR #19635)",
+        description: "Introduced a 5-second connection deadline to the version check network queries, preventing indefinite CLI freezes on poor or offline networks.",
+        link: "https://github.com/meshery/meshery/pull/19635",
+        tags: ["Go/Cobra CLI", "Kubernetes API", "Docker"]
+      },
+      {
+        title: "Kubernetes API Timeout Integration (PR #19342)",
+        description: "Refactored mesheryctl commands and server backend controllers to replace unbounded context.TODO() with proper timeouts, and bound K8s interactions to Cobra's execution context for proper Ctrl+C cancellation signals.",
+        link: "https://github.com/meshery/meshery/pull/19342",
+        tags: ["Go/Cobra CLI", "Kubernetes API", "Docker"]
+      },
+      {
+        title: "Model Scaffolding Dynamic Injection (PR #19055)",
+        description: "Resolved a long-standing CLI scaffolding TODO by implementing a parser-safe name injection handler in model init, writing values directly to generated JSON/YAML configurations without losing file schema sorting.",
+        link: "https://github.com/meshery/meshery/pull/19055",
+        tags: ["Go/Cobra CLI", "Docker"]
+      },
+      {
+        title: "Model Build User Feedback (PR #19152)",
+        description: "Improved terminal UX in mesheryctl model build by rendering dynamic success messages, showing file sizes in human-readable formats, and printing next-step guide outputs on completion.",
+        link: "https://github.com/meshery/meshery/pull/19152",
+        tags: ["Go/Cobra CLI", "Docker"]
+      }
+    ]
+  }
 };
