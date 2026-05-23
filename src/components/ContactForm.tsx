@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { Send, Loader2, CheckCircle2, XCircle, User, Mail, MessageSquare } from "lucide-react";
 
 const ContactForm = () => {
   const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    user_name: "",
-    user_email: "",
+    name: "",
+    email: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,26 +27,35 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-    try {
-      // EmailJS v4: pass public key as 4th arg in options object
-      const result = await emailjs.sendForm(
-        "service_60hrasr",
-        "template_9semgj9",
-        form.current!,
-        {
-          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-        }
-      );
 
-      if (result.text === "OK") {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `Portfolio Contact: ${formData.name}`,
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
         setSubmitStatus("success");
-        setFormData({ user_name: "", user_email: "", message: "" });
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        throw new Error("Failed to send message");
+        throw new Error(result.message || "Failed to send message");
       }
     } catch (error: unknown) {
-      const errMsg = error instanceof Error ? error.message : String(error);
-      console.error("EmailJS error:", errMsg);
+      const errMsg = error instanceof Error ? error.message : "Unknown error";
+      console.error("Contact form error:", errMsg);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -56,24 +64,22 @@ const ContactForm = () => {
 
   return (
     <form ref={form} onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
-      <input type="hidden" name="title" value="Portfolio Contact Form Submission" />
-
       {/* Name Field */}
       <div className="flex flex-col gap-1.5">
         <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
           <User className="h-3 w-3" /> Your Name
         </label>
         <div className={`relative rounded-xl border transition-all duration-300 ${
-          focusedField === "user_name"
+          focusedField === "name"
             ? "border-primary-sky/50 shadow-md shadow-primary-sky/5"
             : "border-zinc-800 hover:border-zinc-700"
         }`}>
           <input
             type="text"
-            name="user_name"
-            value={formData.user_name}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            onFocus={() => setFocusedField("user_name")}
+            onFocus={() => setFocusedField("name")}
             onBlur={() => setFocusedField(null)}
             placeholder="John Doe"
             required
@@ -88,16 +94,16 @@ const ContactForm = () => {
           <Mail className="h-3 w-3" /> Email Address
         </label>
         <div className={`relative rounded-xl border transition-all duration-300 ${
-          focusedField === "user_email"
+          focusedField === "email"
             ? "border-primary-sky/50 shadow-md shadow-primary-sky/5"
             : "border-zinc-800 hover:border-zinc-700"
         }`}>
           <input
             type="email"
-            name="user_email"
-            value={formData.user_email}
+            name="email"
+            value={formData.email}
             onChange={handleChange}
-            onFocus={() => setFocusedField("user_email")}
+            onFocus={() => setFocusedField("email")}
             onBlur={() => setFocusedField(null)}
             placeholder="you@example.com"
             required
