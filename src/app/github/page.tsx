@@ -325,6 +325,24 @@ const GithubStatsPage = () => {
             </FramerWrapper>
           </div>
 
+          {/* GitHub Contribution Calendar Grid */}
+          <FramerWrapper y={30} x={0} delay={0.21} className="w-full">
+            <Card className="border-2 p-5 bg-[#0d1117] hover:shadow-md transition-all duration-300 flex flex-col gap-2">
+              <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold mb-2">
+                <Github className="h-4 w-4 text-emerald-400" />
+                GitHub Contribution Grid
+              </div>
+              <div className="w-full overflow-x-auto no-scrollbar flex justify-center py-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://ghchart.rshah.org/40c463/Joyboy48"
+                  alt="Astitva's GitHub Contributions Calendar"
+                  className="min-w-[720px] max-w-full h-auto object-contain"
+                />
+              </div>
+            </Card>
+          </FramerWrapper>
+
           {/* GitHub Trophies Widget */}
           <FramerWrapper y={30} x={0} delay={0.22} className="w-full">
             <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
