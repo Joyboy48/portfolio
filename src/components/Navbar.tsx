@@ -6,6 +6,7 @@ import {
   Briefcase,
   FolderGit2,
   GitFork,
+  Github,
   GraduationCap,
   HomeIcon,
   LightbulbIcon,
@@ -66,6 +67,13 @@ const Navbar = () => {
         <GitFork className='h-full w-full ' />
       ),
       href: '/contributions',
+    },
+    {
+      title: 'GitHub',
+      icon: (
+        <Github className='h-full w-full ' />
+      ),
+      href: '/github',
     },
    
     {
