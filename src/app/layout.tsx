@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { portfolioConfig } from "@/config/portfolio.config";
 import Particles from "@/components/animations/Particles";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
@@ -53,6 +55,9 @@ export default function RootLayout({
         >
           {children}
         </main>
+
+        {/* THEME ACCENT SWITCHER */}
+        <ThemeSwitcher />
       </body>
     </html>
   );
