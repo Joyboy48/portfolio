@@ -428,37 +428,5 @@ export const portfolioConfig = {
         tags: ["Go/Cobra CLI", "Docker"]
       }
     ]
-  },
-  spotify: {
-    curatedTracks: [
-      {
-        title: "Midnight Dev Session",
-        artist: "Lofi Dreamer",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        coverUrl: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=300&auto=format&fit=crop&q=60",
-        duration: "6:12"
-      },
-      {
-        title: "Cyberpunk Coding",
-        artist: "Neon Skyline",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=60",
-        duration: "7:05"
-      },
-      {
-        title: "Anime Coffee Shop Vibes",
-        artist: "Tokyo Chill",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        coverUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&auto=format&fit=crop&q=60",
-        duration: "5:44"
-      },
-      {
-        title: "Keyboard Tap Rhythm",
-        artist: "Code Flow",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        coverUrl: "https://images.unsplash.com/photo-1487180142328-0c4e37023af5?w=300&auto=format&fit=crop&q=60",
-        duration: "5:02"
-      }
-    ]
   }
 };
