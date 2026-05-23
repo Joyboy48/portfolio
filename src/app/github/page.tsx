@@ -4,7 +4,7 @@ import FramerWrapper from "@/components/animation/FramerWrapper";
 import Heading from "@/components/Heading";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Star, GitFork, BookOpen, Users, FolderDot, Link2 } from "lucide-react";
+import { Github, Star, GitFork, BookOpen, Users, FolderDot, Link2, Trophy, Activity, Clock } from "lucide-react";
 import Link from "next/link";
 
 interface GithubProfile {
@@ -27,9 +27,22 @@ interface GithubRepo {
   language: string;
 }
 
+interface GithubEvent {
+  id: string;
+  type: string;
+  repo: { name: string };
+  payload: {
+    action?: string;
+    commits?: { message: string }[];
+    pull_request?: { title: string };
+  };
+  created_at: string;
+}
+
 const GithubStatsPage = () => {
   const [profile, setProfile] = useState<GithubProfile | null>(null);
   const [repos, setRepos] = useState<GithubRepo[]>([]);
+  const [events, setEvents] = useState<GithubEvent[]>([]);
   const [languages, setLanguages] = useState<{ name: string; count: number; percentage: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,6 +90,14 @@ const GithubStatsPage = () => {
           .sort((a, b) => b.count - a.count);
 
         setLanguages(languageList);
+
+        // Fetch Events for activity feed
+        const eventsRes = await fetch("https://api.github.com/users/Joyboy48/events?per_page=6");
+        if (eventsRes.ok) {
+          const eventsData = await eventsRes.json();
+          setEvents(eventsData);
+        }
+
         setError(null);
       } catch (err: any) {
         setError(err.message || "An unexpected error occurred.");
@@ -103,6 +124,53 @@ const GithubStatsPage = () => {
       Shell: "bg-[#89e051]"
     };
     return colors[lang] || "bg-zinc-500";
+  };
+
+  const formatEvent = (event: GithubEvent) => {
+    const repoName = event.repo.name;
+    const type = event.type;
+
+    switch (type) {
+      case "PushEvent":
+        const commitMsg = event.payload.commits?.[0]?.message || "Commited changes";
+        return (
+          <div className="flex flex-col gap-0.5">
+            <span className="text-zinc-300">
+              Pushed commits to <span className="text-sky-400 font-mono font-semibold">{repoName}</span>
+            </span>
+            <span className="text-zinc-500 text-xs italic truncate max-w-[90%]">&quot;{commitMsg}&quot;</span>
+          </div>
+        );
+      case "PullRequestEvent":
+        const prAction = event.payload.action || "interacted with";
+        const prTitle = event.payload.pull_request?.title || "pull request";
+        return (
+          <div className="flex flex-col gap-0.5">
+            <span className="text-zinc-300">
+              <span className="capitalize">{prAction}</span> pull request in <span className="text-sky-400 font-mono font-semibold">{repoName}</span>
+            </span>
+            <span className="text-zinc-500 text-xs italic truncate max-w-[90%]">&quot;{prTitle}&quot;</span>
+          </div>
+        );
+      case "CreateEvent":
+        return (
+          <span className="text-zinc-300">
+            Created repository/branch at <span className="text-sky-400 font-mono font-semibold">{repoName}</span>
+          </span>
+        );
+      case "WatchEvent":
+        return (
+          <span className="text-zinc-300">
+            Starred repository <span className="text-sky-400 font-mono font-semibold">{repoName}</span>
+          </span>
+        );
+      default:
+        return (
+          <span className="text-zinc-300">
+            Active session in <span className="text-sky-400 font-mono font-semibold">{repoName}</span>
+          </span>
+        );
+    }
   };
 
   return (
@@ -138,7 +206,7 @@ const GithubStatsPage = () => {
         </FramerWrapper>
       ) : (
         <div className="w-full flex flex-col gap-6">
-          {/* Main Stats Summary */}
+          {/* Top Panel: Profile Card, Languages breakdown & Recent Activity Feed */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
             {/* Profile Overview Card */}
             <FramerWrapper y={0} x={-50} delay={0.1} className="lg:col-span-1">
@@ -181,7 +249,7 @@ const GithubStatsPage = () => {
             </FramerWrapper>
 
             {/* Languages breakdown card */}
-            <FramerWrapper y={0} x={0} delay={0.2} className="lg:col-span-2">
+            <FramerWrapper y={0} x={0} delay={0.15} className="lg:col-span-1">
               <Card className="h-full border-2 hover:shadow-md transition-all duration-300">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg font-bold font-rubik text-primary flex items-center gap-1.5">
@@ -213,18 +281,66 @@ const GithubStatsPage = () => {
                     </div>
                     <div className="flex items-center gap-1">
                       <FolderDot className="h-3.5 w-3.5" />
-                      <span>{profile?.public_repos} total projects built</span>
+                      <span>{profile?.public_repos} total repositories</span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </FramerWrapper>
+
+            {/* Recent Public Git Activity Feed */}
+            <FramerWrapper y={0} x={50} delay={0.2} className="lg:col-span-1">
+              <Card className="h-full border-2 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-bold font-rubik text-primary flex items-center gap-1.5">
+                    <Activity className="h-4 w-4 text-sky-400" />
+                    Live Activity Feed
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow flex flex-col justify-start gap-3.5 overflow-hidden">
+                  {events.length === 0 ? (
+                    <div className="text-zinc-500 font-mono text-xs italic py-4">No recent events tracked.</div>
+                  ) : (
+                    <div className="space-y-3.5">
+                      {events.slice(0, 4).map((evt) => (
+                        <div key={evt.id} className="flex gap-2.5 items-start text-xs font-mono">
+                          <Clock className="h-4 w-4 text-zinc-600 mt-0.5 flex-shrink-0" />
+                          <div className="flex flex-col overflow-hidden w-full">
+                            {formatEvent(evt)}
+                            <span className="text-[10px] text-zinc-600 mt-0.5">
+                              {new Date(evt.created_at).toLocaleDateString(undefined, {
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </FramerWrapper>
           </div>
 
+          {/* GitHub Trophies Widget */}
+          <FramerWrapper y={30} x={0} delay={0.22} className="w-full">
+            <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://github-profile-trophy.vercel.app/?username=Joyboy48&theme=onedark&column=7&margin-w=10&margin-h=10"
+                alt="GitHub Trophies"
+                className="max-w-full"
+              />
+            </Card>
+          </FramerWrapper>
+
           {/* GitHub Streak Card and Readme stats */}
-          <FramerWrapper y={50} x={0} delay={0.25} className="w-full">
+          <FramerWrapper y={30} x={0} delay={0.25} className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden">
+              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://github-readme-stats.vercel.app/api?username=Joyboy48&show_icons=true&theme=dark"
@@ -232,7 +348,7 @@ const GithubStatsPage = () => {
                   className="max-w-full"
                 />
               </Card>
-              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden">
+              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://github-readme-streak-stats.herokuapp.com/?user=Joyboy48&theme=dark"
@@ -246,7 +362,7 @@ const GithubStatsPage = () => {
           {/* Top Repositories Grid */}
           <div className="flex flex-col gap-3 w-full mt-4">
             <h2 className="text-xl font-poppins text-primary font-semibold flex items-center gap-1.5">
-              <BookOpen className="h-5 w-5 text-sky-400" />
+              <Trophy className="h-5 w-5 text-yellow-500" />
               Featured Public Repositories
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -299,3 +415,4 @@ const GithubStatsPage = () => {
 };
 
 export default GithubStatsPage;
+
