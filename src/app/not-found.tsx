@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Home, Terminal, FolderGit2, RotateCcw } from "lucide-react";
+import { Home, Github, FolderGit2, RotateCcw } from "lucide-react";
 
 // Glitch text effect component
 const GlitchText = ({ text }: { text: string }) => (
@@ -144,11 +144,11 @@ export default function NotFound() {
             Go Home
           </Link>
           <Link
-            href="/terminal"
+            href="/github"
             className="flex-1 flex items-center justify-center gap-2 py-3 bg-emerald-950/40 hover:bg-emerald-950/70 border border-emerald-900/40 text-emerald-400 hover:text-emerald-300 rounded-xl text-sm transition-all hover:-translate-y-0.5"
           >
-            <Terminal className="h-4 w-4" />
-            Open Terminal
+            <Github className="h-4 w-4" />
+            GitHub Dashboard
           </Link>
           <Link
             href="/projects"

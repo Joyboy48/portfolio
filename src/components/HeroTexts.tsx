@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TextRotator from "./TextRotator";
 import { portfolioConfig } from "@/config/portfolio.config";
-import { MapPin, Sparkles, Terminal, ChevronRight } from "lucide-react";
+import { MapPin, Sparkles, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const HeroTexts = () => {
@@ -68,7 +68,6 @@ const HeroTexts = () => {
         className={`flex flex-wrap gap-2 mt-4 transition-all duration-700 delay-500 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
       >
         {[
-          { label: "Terminal", href: "/terminal", icon: Terminal },
           { label: "Projects", href: "/projects", icon: ChevronRight },
           { label: "Blogs", href: "/blogs", icon: ChevronRight },
         ].map((item) => (

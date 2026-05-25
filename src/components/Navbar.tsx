@@ -71,13 +71,6 @@ const Navbar = () => {
       href: '/contributions',
     },
     {
-      title: 'Terminal',
-      icon: (
-        <Terminal className='h-full w-full ' />
-      ),
-      href: '/terminal',
-    },
-    {
       title: 'GitHub',
       icon: (
         <Github className='h-full w-full ' />

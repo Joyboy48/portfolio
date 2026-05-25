@@ -9,7 +9,6 @@ import {
   Coffee,
   Github,
   Newspaper,
-  Terminal,
   Code2,
   ArrowUpRight,
   Sparkles,
@@ -46,16 +45,6 @@ const quickLinks = [
     color: "text-amber-400",
     borderColor: "hover:border-amber-900/40",
     bgGlow: "group-hover:shadow-amber-500/5",
-  },
-  {
-    title: "Interactive Terminal",
-    description: "Try the built-in developer terminal with hidden easter eggs.",
-    href: "/terminal",
-    icon: Terminal,
-    color: "text-sky-400",
-    borderColor: "hover:border-sky-900/40",
-    bgGlow: "group-hover:shadow-sky-500/5",
-    internal: true,
   },
 ];
 
@@ -101,7 +90,7 @@ const MorePage = () => {
           <FramerWrapper key={i} y={30} delay={0.15 + i * 0.08} className="w-full">
             <Link
               href={item.href}
-              target={item.internal ? undefined : "_blank"}
+              target="_blank"
               className="block h-full"
             >
               <Card
