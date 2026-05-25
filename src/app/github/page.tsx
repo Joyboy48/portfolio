@@ -6,7 +6,25 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Github, Star, GitFork, BookOpen, Users, FolderDot, Link2, Trophy, Activity, Clock, Search, RotateCcw, GitCommit, GitPullRequest, FolderPlus } from "lucide-react";
+import {
+  Github,
+  Star,
+  GitFork,
+  BookOpen,
+  Users,
+  FolderDot,
+  Link2,
+  Trophy,
+  Activity,
+  Clock,
+  Search,
+  RotateCcw,
+  GitCommit,
+  GitPullRequest,
+  FolderPlus,
+  Flame,
+  Code2,
+} from "lucide-react";
 import Link from "next/link";
 
 interface GithubProfile {
@@ -141,7 +159,7 @@ const GithubStatsPage = () => {
       CSS: "bg-[#563d7c]",
       Dart: "bg-[#00b4ab]",
       C: "bg-[#555555]",
-      Shell: "bg-[#89e051]"
+      Shell: "bg-[#89e051]",
     };
     return colors[lang] || "bg-zinc-500";
   };
@@ -208,8 +226,17 @@ const GithubStatsPage = () => {
     }
   };
 
+  // Build custom typing lines for the search username
+  const getTypingLines = () => {
+    if (username.toLowerCase() === "joyboy48") {
+      return "Full-Stack+%26+Backend+Developer;CNCF+Contributor+(Meshery+%7C+OTel);DevOps+%26+Distributed+Systems;Docker+%7C+Kafka+%7C+Kubernetes+%7C+Prometheus";
+    }
+    return `GitHub+Profile:+${username};Stats+%26+Activity+Tracker;Open+Source+Contributions`;
+  };
+
   return (
     <div className="h-full w-full relative flex flex-col items-start gap-6 overflow-y-auto no-scrollbar pb-8 animate-in fade-in duration-300">
+      {/* HEADER SECTION */}
       <div className="w-full flex justify-between items-center flex-wrap gap-4">
         <Badge variant="secondary" className="gap-1.5 py-1">
           <Github className="h-4 w-4" />
@@ -231,7 +258,7 @@ const GithubStatsPage = () => {
           <Button type="submit" size="sm" className="h-9 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 text-xs font-mono">
             Search
           </Button>
-          {username !== "Joyboy48" && (
+          {username.toLowerCase() !== "joyboy48" && (
             <Button
               type="button"
               onClick={handleReset}
@@ -271,6 +298,45 @@ const GithubStatsPage = () => {
         </FramerWrapper>
       ) : (
         <div className="w-full flex flex-col gap-6">
+          
+          {/* Header Wave Visualizer */}
+          <FramerWrapper y={-30} x={0} delay={0.05} className="w-full relative overflow-hidden rounded-xl border border-zinc-800/40">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src={`https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:0e75b6,100:00B4D8&height=100&section=header&animation=fadeIn`} 
+              alt="Header Wave" 
+              className="w-full h-24 object-cover" 
+            />
+            {/* Typing SVG Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center pt-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=2500&pause=800&color=00B4D8&center=true&vCenter=true&width=600&lines=${getTypingLines()}`}
+                alt="Typing Stats"
+                className="max-w-[90%]"
+              />
+            </div>
+          </FramerWrapper>
+
+          {/* Profile overview widgets */}
+          <FramerWrapper y={30} x={0} delay={0.1} className="w-full flex justify-center flex-wrap gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src={`https://komarev.com/ghpvc/?username=${username}&label=Profile+Views&color=0e75b6&style=flat-square`}
+              alt="Views" 
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white"
+              alt="LinkedIn Badge" 
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="https://img.shields.io/badge/Medium-Articles-12100E?style=flat-square&logo=medium&logoColor=white"
+              alt="Medium Badge" 
+            />
+          </FramerWrapper>
+
           {/* Top Panel: Profile Card, Languages breakdown & Recent Activity Feed */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
             {/* Profile Overview Card */}
@@ -363,7 +429,7 @@ const GithubStatsPage = () => {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg font-bold font-rubik text-primary flex items-center gap-1.5">
                     <Activity className="h-4 w-4 text-sky-400" />
-                    Git Activity Graph
+                    Git Activity Logs
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow flex flex-col justify-start gap-4 overflow-hidden relative pl-6">
@@ -402,26 +468,150 @@ const GithubStatsPage = () => {
             </FramerWrapper>
           </div>
 
-          {/* GitHub Contribution Calendar Grid */}
-          <FramerWrapper y={30} x={0} delay={0.21} className="w-full">
-            <Card className="border-2 p-5 bg-[#0d1117] hover:shadow-md transition-all duration-300 flex flex-col gap-2">
-              <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold mb-2">
-                <Github className="h-4 w-4 text-emerald-400" />
-                GitHub Contribution Grid
-              </div>
-              <div className="w-full overflow-x-auto no-scrollbar flex justify-center py-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://ghchart.rshah.org/40c463/${username}`}
-                  alt={`${username}'s GitHub Contributions Calendar`}
-                  className="min-w-[720px] max-w-full h-auto object-contain"
-                />
-              </div>
+          {/* GitHub Readme Activity Graph */}
+          <FramerWrapper y={30} x={0} delay={0.22} className="w-full">
+            <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://github-readme-activity-graph.vercel.app/graph?username=${username}&bg_color=0d1117&color=00B4D8&line=0e75b6&point=ffffff&area=true&hide_border=true&custom_title=Contribution+Activity`}
+                alt="GitHub Contribution Activity Graph"
+                className="w-full max-h-[300px] object-contain"
+              />
             </Card>
           </FramerWrapper>
 
+          {/* LeetCode Heatmap Card & GitHub Streaks */}
+          <FramerWrapper y={30} x={0} delay={0.25} className="w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
+              {/* LeetCode stats card - Only loaded for Joyboy48 (Astitva) */}
+              {username.toLowerCase() === "joyboy48" && (
+                <Card className="border-2 p-5 bg-[#0d1117] flex flex-col gap-3 hover:shadow-md transition-all duration-300 justify-center items-center">
+                  <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold self-start w-full border-b border-zinc-900 pb-2">
+                    <Flame className="h-4 w-4 text-amber-500 fill-amber-500 animate-pulse" />
+                    LeetCode Knight Activity & Heatmap
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://leetcard.jacoblin.cool/joyboy048?theme=dark&font=JetBrains+Mono&ext=heatmap"
+                    alt="LeetCode Stats Heatmap"
+                    className="max-w-full h-auto object-contain"
+                  />
+                </Card>
+              )}
+
+              {/* GitHub Streak Card */}
+              <Card className="border-2 p-5 bg-[#0d1117] flex flex-col gap-3 hover:shadow-md transition-all duration-300 justify-center items-center lg:col-span-1">
+                <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold self-start w-full border-b border-zinc-900 pb-2">
+                  <Flame className="h-4 w-4 text-emerald-400" />
+                  GitHub Commits Streak
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=tokyonight&hide_border=true`}
+                  alt="GitHub Streak"
+                  className="max-w-full h-auto object-contain"
+                />
+              </Card>
+            </div>
+          </FramerWrapper>
+
+          {/* GitHub Profile Summary Cards Grid */}
+          <FramerWrapper y={30} x={0} delay={0.28} className="w-full">
+            <div className="flex flex-col gap-4">
+              <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold">
+                <Code2 className="h-4 w-4 text-sky-400" />
+                GitHub Language & Commit Summary
+              </div>
+              
+              {/* Profile Details (Width 100%) */}
+              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=${username}&theme=tokyonight`}
+                  alt="GitHub Profile Details"
+                  className="w-full max-h-[300px] object-contain"
+                />
+              </Card>
+
+              {/* 4 Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                <Card className="border-2 p-2 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=${username}&theme=tokyonight`}
+                    alt="Repos Per Language"
+                    className="max-w-full object-contain"
+                  />
+                </Card>
+                <Card className="border-2 p-2 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=${username}&theme=tokyonight`}
+                    alt="Most Commit Language"
+                    className="max-w-full object-contain"
+                  />
+                </Card>
+                <Card className="border-2 p-2 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${username}&theme=tokyonight`}
+                    alt="Stats Summary"
+                    className="max-w-full object-contain"
+                  />
+                </Card>
+                <Card className="border-2 p-2 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=${username}&theme=tokyonight&utcOffset=5.5`}
+                    alt="Productive Time Summary"
+                    className="max-w-full object-contain"
+                  />
+                </Card>
+              </div>
+            </div>
+          </FramerWrapper>
+
+          {/* GitHub Contribution Calendar Grid & Snake Game Animation */}
+          <FramerWrapper y={30} x={0} delay={0.32} className="w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
+              {/* Contribution Grid */}
+              <Card className="border-2 p-5 bg-[#0d1117] hover:shadow-md transition-all duration-300 flex flex-col gap-2 justify-center">
+                <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold mb-2">
+                  <Github className="h-4 w-4 text-emerald-400" />
+                  GitHub Contribution Grid
+                </div>
+                <div className="w-full overflow-x-auto no-scrollbar flex justify-center py-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://ghchart.rshah.org/40c463/${username}`}
+                    alt={`${username}'s GitHub Contributions Calendar`}
+                    className="min-w-[400px] max-w-full h-auto object-contain"
+                  />
+                </div>
+              </Card>
+
+              {/* Snake Eating Grid Game */}
+              <Card className="border-2 p-5 bg-[#0d1117] hover:shadow-md transition-all duration-300 flex flex-col gap-2 justify-center items-center">
+                <div className="text-sm font-mono text-zinc-400 flex items-center gap-1.5 font-bold mb-2 self-start">
+                  <Activity className="h-4 w-4 text-sky-400 animate-spin" style={{ animationDuration: "3s" }} />
+                  Contribution Snake Animation
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://raw.githubusercontent.com/${username}/${username}/output/github-contribution-grid-snake-dark.svg`}
+                  alt="GitHub Contribution Grid Snake"
+                  className="max-w-full h-auto object-contain"
+                  onError={(e) => {
+                    // Hide the card if the snake SVG does not exist in the searched repo
+                    e.currentTarget.parentElement?.classList.add("hidden");
+                  }}
+                />
+              </Card>
+            </div>
+          </FramerWrapper>
+
           {/* GitHub Trophies Widget */}
-          <FramerWrapper y={30} x={0} delay={0.22} className="w-full">
+          <FramerWrapper y={30} x={0} delay={0.34} className="w-full">
             <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -430,36 +620,6 @@ const GithubStatsPage = () => {
                 className="max-w-full"
               />
             </Card>
-          </FramerWrapper>
-
-          {/* GitHub Streak Card, Readme Stats & Compact Language Card */}
-          <FramerWrapper y={30} x={0} delay={0.25} className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=dark`}
-                  alt="GitHub Stats"
-                  className="max-w-full"
-                />
-              </Card>
-              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=dark`}
-                  alt="GitHub Streak"
-                  className="max-w-full"
-                />
-              </Card>
-              <Card className="border-2 p-4 bg-[#0d1117] flex justify-center items-center overflow-hidden hover:shadow-md transition-all duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=dark`}
-                  alt="Compact Top Languages"
-                  className="max-w-full"
-                />
-              </Card>
-            </div>
           </FramerWrapper>
 
           {/* Top Repositories Grid */}
@@ -473,7 +633,7 @@ const GithubStatsPage = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                 {repos.slice(0, 4).map((repo, idx) => (
-                  <FramerWrapper key={repo.name} y={0} x={0} delay={0.3 + idx * 0.05} className="w-full">
+                  <FramerWrapper key={repo.name} y={0} x={0} delay={0.36 + idx * 0.05} className="w-full">
                     <Card className="h-full border-2 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                       <CardHeader className="pb-1">
                         <CardTitle className="text-base font-bold text-primary font-mono flex items-center justify-between gap-2">
