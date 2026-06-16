@@ -83,6 +83,13 @@ const ProjectCards: React.FC<ProjectCardProps> = ({ value, num }) => {
                 {value.tags.map((tag: string, index: number) => {
                   const tagStyles: Record<string, string> = {
                     Nextjs: "bg-zinc-900 border border-zinc-800 text-zinc-300",
+                    "Next.js": "bg-zinc-900 border border-zinc-800 text-zinc-300",
+                    Python: "bg-blue-950/20 border border-blue-900/30 text-blue-400",
+                    FastAPI: "bg-emerald-950/20 border border-emerald-900/30 text-emerald-400",
+                    PostgreSQL: "bg-cyan-950/20 border border-cyan-900/30 text-cyan-400",
+                    LangGraph: "bg-purple-950/20 border border-purple-900/30 text-purple-400",
+                    "Gemini API": "bg-indigo-950/20 border border-indigo-900/30 text-indigo-400",
+                    Docker: "bg-sky-950/20 border border-sky-900/30 text-sky-400",
                     Freelancing: "bg-yellow-950/20 border border-yellow-900/30 text-yellow-500",
                     "Shadcn Ui": "bg-sky-950/20 border border-sky-900/30 text-sky-400",
                     Typescript: "bg-rose-950/20 border border-rose-900/30 text-rose-400",

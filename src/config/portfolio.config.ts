@@ -115,9 +115,25 @@ export const portfolioConfig = {
       {
         name: "Scikit-learn",
         icon: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg",
+      },
+      {
+        name: "FastAPI",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+      {
+        name: "Next.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "LangGraph",
+        icon: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/langgraph.svg",
       }
     ],
     tools: [
+      {
+        name: "Gemini API",
+        icon: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/gemini.svg",
+      },
       {
         name: "MongoDB",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
@@ -257,6 +273,29 @@ export const portfolioConfig = {
   ],
   // Projects Information
   projects: [
+    {
+      title: "Conversio – AI-Native CRM & Campaign Copilot",
+      description:
+        "Architected a decoupled microservices-based CRM to orchestrate bulk multi-channel marketing campaigns (WhatsApp, SMS, Email) using FastAPI asynchronous BackgroundTasks and asyncio.Semaphore rate-limiting. Engineered a thread-safe round-robin API key rotation pool with mutex locks and self-healing key eviction, scaling API rate-limit bandwidth by 500%. Implemented a stateful LangGraph conversation coordinator for deterministic NLP, a webhook priority ingestion guard, and a greedy resource allocator.",
+      tags: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "PostgreSQL",
+        "LangGraph",
+        "Gemini API",
+        "Docker"
+      ],
+      link: "https://github.com/Joyboy48/Conversio",
+      demoLink: "https://conversio-frontend.onrender.com/",
+      achievements: [
+        "Architected a decoupled microservices CRM orchestrating bulk multi-channel marketing campaigns using FastAPI asynchronous BackgroundTasks and asyncio.Semaphore concurrency throttling.",
+        "Engineered a thread-safe round-robin API key rotation pool with mutex locks and self-healing key eviction, scaling API rate-limit bandwidth by 500% (from 20 to 100 RPM).",
+        "Implemented a stateful LangGraph agent utilizing deterministic regex look-backs to resolve Hinglish pronouns and carry over cohort contexts, bypassing LLM API overhead and achieving sub-millisecond execution.",
+        "Designed a webhook ingestion guard using a status-priority matrix to handle out-of-order delivery callbacks, executing atomic database updates to prevent race conditions on campaign status tracking.",
+        "Formulated a greedy budget-constrained channel allocator operating in integer Paise precision to avoid floating-point errors, dynamically upgrading targets (WhatsApp/SMS/Email) to maximize campaign ROI."
+      ]
+    },
     {
       title: "JobSmart Backend — AI-powered Career Platform",
       description:

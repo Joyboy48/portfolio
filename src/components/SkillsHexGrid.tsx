@@ -34,6 +34,9 @@ const skillDetails: Record<string, { desc: string; level: string; xp: string }> 
   "React": { desc: "Component-based web UI views, React hook states, dynamic hydration, virtual DOM rendering.", level: "Advanced", xp: "2+ Years" },
   "TensorFlow": { desc: "Deep learning models, neural networks training, prediction classifiers, machine learning.", level: "Intermediate", xp: "1 Year" },
   "Scikit-learn": { desc: "Traditional machine learning algorithms, model fitting, scaling, and hyperparameter tuning.", level: "Advanced", xp: "1.5 Years" },
+  "FastAPI": { desc: "Asynchronous Python web framework, high-performance API routing, BackgroundTasks, and rate-limiting concurrency controllers.", level: "Expert", xp: "2+ Years" },
+  "Next.js": { desc: "React framework for server-side rendering, static site generation, API routing, and optimized frontend client hydration.", level: "Advanced", xp: "1.5 Years" },
+  "LangGraph": { desc: "Stateful orchestrator for multi-agent LLM systems, deterministic conversation flow graphs, and NLP query pipelines.", level: "Advanced", xp: "1 Year" },
 
   // Tools & Tech
   "MongoDB": { desc: "Document database storage, JSON collections, Mongoose ODM aggregations, scale designs.", level: "Advanced", xp: "3 Years" },
@@ -52,6 +55,7 @@ const skillDetails: Record<string, { desc: string; level: string; xp: string }> 
   "Linux": { desc: "Kernel operations, system administration, process control, file pipelines, SSH networks.", level: "Expert", xp: "4+ Years" },
   "Git": { desc: "Distributed version control, merge resolutions, rebase workflows, feature branches.", level: "Expert", xp: "4+ Years" },
   "Postman": { desc: "API response assertions, testing request models, mocking servers, environments configuration.", level: "Expert", xp: "3 Years" },
+  "Gemini API": { desc: "Integration of Google Gemini LLM API, key rotation managers, token optimization, and intelligent prompt engineering.", level: "Advanced", xp: "1 Year" },
 
   // Data Science
   "NumPy": { desc: "High-dimensional array structures, mathematical operations, linear algebra algorithms.", level: "Advanced", xp: "2 Years" },

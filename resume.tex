@@ -1,0 +1,14 @@
+\resumeSubheading
+  {Conversio -- AI-Native CRM \& Campaign Copilot}{Python, FastAPI, Next.js, PostgreSQL, LangGraph}
+  {Backend / Full Stack Engineer}{June 2026}
+  \resumeItemListStart
+    \resumeItem{Architected a decoupled microservices CRM orchestrating bulk multi-channel marketing campaigns using FastAPI asynchronous \texttt{BackgroundTasks} and \texttt{asyncio.Semaphore} concurrency throttling.}
+    \resumeItem{Engineered a thread-safe round-robin API key rotation pool with mutex locks and self-healing key eviction, scaling API rate-limit bandwidth by 500\% (from 20 to 100 RPM).}
+    \resumeItem{Implemented a stateful LangGraph agent utilizing deterministic regex look-backs to resolve Hinglish pronouns and carry over cohort contexts, bypassing LLM API overhead and achieving sub-millisecond execution.}
+    \resumeItem{Designed a webhook ingestion guard using a status-priority matrix to handle out-of-order delivery callbacks, executing atomic database updates to prevent race conditions on campaign status tracking.}
+    \resumeItem{Formulated a greedy budget-constrained channel allocator operating in integer Paise precision to avoid floating-point errors, dynamically upgrading targets (WhatsApp/SMS/Email) to maximize campaign ROI.}
+  \resumeItemListEnd
+
+% Links for reference:
+% \href{https://github.com/Joyboy48/Conversio}{\underline{GitHub}}
+% $|$ \href{https://conversio-frontend.onrender.com/}{\underline{Live}}
