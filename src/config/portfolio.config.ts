@@ -249,7 +249,7 @@ export const portfolioConfig = {
       institution: "Indian Institute of Information Technology, Nagpur",
       location: "Nagpur, Maharashtra, India",
       period: "2023 - 2027",
-      cgpa: "7.49/10",
+      cgpa: "7.60/10",
       description: "Pursing B.Tech in Computer Science and Engineering with specialization in Data Science & Analytics"
     },
 
